@@ -11,6 +11,7 @@ import MainInfo from "./components/MainInfo.vue"
 import DetailedInfo from "./components/DetailedInfo.vue"
 
 import axios from "axios"
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
 
 export default defineComponent({
   name: "App",
@@ -29,12 +30,7 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
+        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`
       )
 
       let id = await axios.get(

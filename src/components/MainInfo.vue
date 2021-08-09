@@ -81,6 +81,7 @@
 
 <script lang="ts">
 import axios from "axios"
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
 import { defineComponent } from "vue"
 
 export default defineComponent({
