@@ -1,4 +1,12 @@
-# weather
+# Weather App
+
+A weather application which you can check daily info about weather. This application uses https://www.metaweather.com/api/ as data source.
+
+Not every city is supported by the API. You can check available cities from [here.](https://www.metaweather.com/map/)
+
+# Desktop
+
+
 
 ## Project setup
 ```
