@@ -6,7 +6,7 @@ Not every city is supported by the API. You can check available cities from [her
 
 # Desktop
 
-
+[![Answering](./src/assets/weather.png)](https://omercalik-weatherapp.netlify.app/)
 
 ## Project setup
 ```
