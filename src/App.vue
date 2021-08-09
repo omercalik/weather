@@ -29,7 +29,12 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`
+        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
       )
 
       let id = await axios.get(
