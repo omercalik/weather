@@ -4,6 +4,8 @@ A weather application which you can check daily info about weather. This applica
 
 Not every city is supported by the API. You can check available cities from [here.](https://www.metaweather.com/map/)
 
+If you can't see the app that's because the CORS problem of the API. Try accessing the proxy server from https://cors-anywhere.herokuapp.com/corsdemo and then reload the page.
+
 # Desktop
 
 [![Answering](./src/assets/weather.png)](https://omercalik-weatherapp.netlify.app/)
