@@ -81,7 +81,9 @@
 
 <script lang="ts">
 import axios from "axios"
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
+const auth = {
+  headers: { "Access-Control-Allow-Origin": "*" },
+}
 import { defineComponent } from "vue"
 
 export default defineComponent({
@@ -121,7 +123,8 @@ export default defineComponent({
     async searchLocation() {
       if (this.location !== "") {
         let response = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${this.location}`
+          `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${this.location}`,
+          auth
         )
 
         this.locationResults = response.data
@@ -131,7 +134,8 @@ export default defineComponent({
     async getWeatherData(woeid: number) {
       console.log(woeid)
       let weather = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/${woeid}`
+        `${process.env.VUE_APP_API_BASE_URL}/location/${woeid}`,
+        auth
       )
 
       this.currentWeatherInfo = weather.data.consolidated_weather[0]

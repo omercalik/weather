@@ -11,7 +11,9 @@ import MainInfo from "./components/MainInfo.vue"
 import DetailedInfo from "./components/DetailedInfo.vue"
 
 import axios from "axios"
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
+const auth = {
+  headers: { "Access-Control-Allow-Origin": "*" },
+}
 
 export default defineComponent({
   name: "App",
@@ -30,22 +32,26 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`
+        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`,
+        auth
       )
 
       let id = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`
+        `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
+        auth
       )
 
       if (id) {
         let weather = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`
+          `${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
+          auth
         )
 
         this.weatherData = weather.data
       } else {
         let weather = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/44418`
+          `${process.env.VUE_APP_API_BASE_URL}/location/44418`,
+          auth
         )
 
         this.weatherData = weather.data
