@@ -13,7 +13,7 @@
         <p>100</p>
       </div>
       <div id="humidity-bar">
-        <div class="progress"></div>
+        <div :style="{ width: `${data.humidity}%` }" class="progress"></div>
       </div>
     </div>
     <div v-else-if="type === 'visibility'" class="visibility">
@@ -37,9 +37,7 @@ export default defineComponent({
 
   props: ["title", "type", "data"],
 
-  mounted() {
-    console.log(this.data)
-  },
+  mounted() {},
 
   methods: {},
 })
@@ -48,7 +46,8 @@ export default defineComponent({
 <style lang="scss">
 .detail-box {
   background: #1e213a;
-  width: 500px;
+  width: 480px;
+  max-width: 45%;
   color: #e7e7eb;
   text-align: center;
 
@@ -61,6 +60,14 @@ export default defineComponent({
     margin-top: -15px;
     font-weight: 700;
     font-size: 64px;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 48px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 40px;
+    }
   }
 
   .direction {
@@ -72,6 +79,14 @@ export default defineComponent({
   span {
     font-weight: 500;
     font-size: 36px;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
   }
 }
 .humidity-mag {
@@ -93,7 +108,6 @@ export default defineComponent({
   margin: 0 auto;
   margin-top: -8px;
   .progress {
-    width: 55%;
     height: 10px;
     background-color: #ffec65;
     border-radius: 80px;

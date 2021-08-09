@@ -11,12 +11,12 @@
           :degreeMax="Math.round(forecast.max_temp)"
         />
       </div>
-      <h2>Bugünün Detayları</h2>
+      <h2>Today's Details</h2>
 
       <div class="detail-wrapper">
         <div class="row">
           <DetailBox
-            title="Rüzgar Hızı ve Yönü"
+            title="Wind Speed and Direction"
             type="wind"
             :data="{
               speed: Math.random(todaysData.wind_speed),
@@ -24,19 +24,19 @@
             }"
           />
           <DetailBox
-            title="Nem"
+            title="Humidity"
             type="humidity"
             :data="{ humidity: todaysData.humidity }"
           />
         </div>
-        <div class="row">
+        <div id="row2" class="row">
           <DetailBox
-            title="Görüş Mesafesi"
+            title="Visibility"
             type="visibility"
             :data="{ visibility: todaysData.visibility }"
           />
           <DetailBox
-            title="Hava Basıncı"
+            title="Air Pressure"
             type="pressure"
             :data="{ pressure: Math.round(todaysData.air_pressure) }"
           />
@@ -68,17 +68,22 @@ export default defineComponent({
     }
   },
 
+  beforeUpdate() {
+    this.foreCast = this.weatherData.consolidated_weather.slice(1)
+    this.todaysData = this.weatherData.consolidated_weather[0]
+  },
+
   mounted() {
     this.foreCast = this.weatherData.consolidated_weather.slice(1)
     this.todaysData = this.weatherData.consolidated_weather[0]
-    console.log(this.foreCast)
+    //console.log(this.foreCast)
   },
 
   methods: {
     getDate(index: number, date: string) {
       return index === 0
-        ? "Yarın"
-        : new Date(date).toLocaleString("default", {
+        ? "Tomorrow"
+        : new Date(date).toLocaleString("en-GB", {
             day: "numeric",
             weekday: "long",
             month: "long",
@@ -92,7 +97,7 @@ export default defineComponent({
 .detailed-info-wrapper {
   width: 75vw;
   background: #100e1d;
-
+  overflow: auto;
   h2 {
     color: #e7e7eb;
     font-weight: 700;
@@ -101,16 +106,28 @@ export default defineComponent({
   }
 
   .container {
-    width: max-content;
     margin: 0 auto;
+    width: 75%;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 100vw;
   }
 }
 
 .forecast-wrapper {
   display: flex;
-  width: max-content;
+
   gap: 25px;
   margin-top: 100px;
+
+  @media screen and (max-width: 1300px) {
+    max-width: 960px;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-wrap: wrap;
+  }
 }
 
 .detail-wrapper {
@@ -118,6 +135,16 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .row {
+      display: block;
+    }
+
+    #row2 {
+      margin-top: -40px;
+    }
   }
 }
 </style>

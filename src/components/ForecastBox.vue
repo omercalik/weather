@@ -25,9 +25,7 @@ export default defineComponent({
     return {}
   },
 
-  mounted() {
-    console.log(this.date)
-  },
+  mounted() {},
 
   methods: {
     getImageSource() {
@@ -41,8 +39,7 @@ export default defineComponent({
 .forecast-box {
   background: #1e213a;
   text-align: center;
-  height: 250px;
-
+  height: 200px;
   position: relative;
 
   img {
@@ -60,6 +57,16 @@ export default defineComponent({
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  @media screen and (max-width: 1600px) {
+    p {
+      font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 40%;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper" v-if="Object.keys(weatherData).length > 0">
-    <MainInfo :weatherData="weatherData" />
+    <MainInfo :weatherData="weatherData" @changelocation="changeLocation" />
     <DetailedInfo :weatherData="weatherData" />
   </div>
 </template>
@@ -28,15 +28,32 @@ export default defineComponent({
 
   methods: {
     async fetchWeatherData() {
+      let location = await axios.get(
+        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`
+      )
+
       let id = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=ankara`
+        `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`
       )
 
-      let weather = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`
-      )
+      if (id) {
+        let weather = await axios.get(
+          `${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`
+        )
 
-      this.weatherData = weather.data
+        this.weatherData = weather.data
+      } else {
+        let weather = await axios.get(
+          `${process.env.VUE_APP_API_BASE_URL}/location/44418`
+        )
+
+        this.weatherData = weather.data
+      }
+    },
+
+    changeLocation(newData: any) {
+      console.log(newData)
+      this.weatherData = newData
     },
   },
 })
@@ -55,11 +72,20 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
 }
 
 .main-wrapper {
   display: flex;
+  height: 100vh;
+
+  @media screen and (max-width: 900px) {
+    display: block;
+  }
 }
 </style>
