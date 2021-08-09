@@ -36,7 +36,7 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `http://ip-api.com/json/`,
+        `https://freegeoip.app/json/`,
         auth
       )
 
