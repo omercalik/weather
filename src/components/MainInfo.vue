@@ -125,7 +125,7 @@ export default defineComponent({
     async searchLocation() {
       if (this.location !== "") {
         let response = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${this.location}`,
+          `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${this.location}`,
           auth
         )
 
@@ -136,7 +136,7 @@ export default defineComponent({
     async getWeatherData(woeid: number) {
       console.log(woeid)
       let weather = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/${woeid}`,
+        `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/${woeid}`,
         auth
       )
 
