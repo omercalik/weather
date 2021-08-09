@@ -16,7 +16,7 @@ const auth = {
     "Accept": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, access-control-allow-headers",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization, access-control-allow-headers, access-control-allow-methods",
     "Accept-Version": "1",
   },
 }
