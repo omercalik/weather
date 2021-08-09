@@ -35,36 +35,36 @@ export default defineComponent({
 
   methods: {
     async fetchWeatherData() {
-      let location = await axios.get(
-        `https://freegeoip.app/json/`,
-        auth
-      )
+      // let location = await axios.get(
+      //   `https://freegeoip.app/json/`,
+      //   auth
+      // )
 
-      console.log(location)
+      // console.log(location)
 
 
-      let id = await axios.get(
-        `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
-        auth
-      )
+      // let id = await axios.get(
+      //   `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
+      //   auth
+      // )
 
-      if (id.data.length > 0) {
-        let weather = await axios.get(
-          `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
-          auth
-        )
+      // if (id.data.length > 0) {
+      //   let weather = await axios.get(
+      //     `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
+      //     auth
+      //   )
 
-        console.log(weather)
+      //   console.log(weather)
 
-        this.weatherData = weather.data
-      } else {
+      //   this.weatherData = weather.data
+      // } else {
         let weather = await axios.get(
           `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/44418`,
           auth
         )
 
         this.weatherData = weather.data
-      }
+     // }
     },
 
     changeLocation(newData: any) {
