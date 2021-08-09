@@ -82,7 +82,9 @@
 <script lang="ts">
 import axios from "axios"
 const auth = {
-  headers: { "Access-Control-Allow-Origin": "*" },
+  headers: { "Accept": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Accept-Version": "1", },
 }
 import { defineComponent } from "vue"
 
