@@ -37,33 +37,14 @@ export default defineComponent({
 
   methods: {
     async fetchWeatherData() {
-      let location = await axios.get(
-        `https://get.geojs.io/v1/ip/geo.json`,auth
-        
-      )
 
-      let id = await axios.get(
-        `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
-        auth
-      )
-
-      if (id.data.length > 0) {
-        let weather = await axios.get(
-          `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
-          auth
-        )
-
-        console.log(weather)
-
-        this.weatherData = weather.data
-      } else {
         let weather = await axios.get(
           `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/2343732`,
           auth
         )
 
         this.weatherData = weather.data
-     }
+     
     },
 
     changeLocation(newData: any) {
@@ -71,9 +52,7 @@ export default defineComponent({
       this.weatherData = newData
     },
 
-    getLocation(){
-
-    }
+    
   },
 })
 </script>

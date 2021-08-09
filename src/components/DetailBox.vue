@@ -37,9 +37,6 @@ export default defineComponent({
 
   props: ["title", "type", "data"],
 
-  mounted() {},
-
-  methods: {},
 })
 </script>
 
