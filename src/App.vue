@@ -36,7 +36,7 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `https://get.geojs.io/v1/ip/geo.json`,
+        `https://get.geojs.io/v1/ip/geo.json`,auth
         
       )
 
