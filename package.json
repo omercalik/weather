@@ -10,6 +10,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "geolocator": "^2.1.5",
     "netlify-cli": "^6.0.9",
     "update-notifier": "^5.1.0",
     "vue": "^3.0.0"
