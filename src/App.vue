@@ -40,9 +40,6 @@ export default defineComponent({
         
       )
 
-      
-
-
       let id = await axios.get(
         `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
         auth
