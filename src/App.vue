@@ -36,22 +36,21 @@ export default defineComponent({
   methods: {
     async fetchWeatherData() {
       let location = await axios.get(
-        `https://ipinfo.io/json?token=${process.env.VUE_APP_LOCATION_API_KEY}`,
+        `http://ip-api.com/json/`,
         auth
       )
 
       console.log(location)
 
-      
 
       let id = await axios.get(
-        `${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
+        `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/search/?query=${location.data.city}`,
         auth
       )
 
       if (id.data.length > 0) {
         let weather = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
+          `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/${id.data[0].woeid}`,
           auth
         )
 
@@ -60,7 +59,7 @@ export default defineComponent({
         this.weatherData = weather.data
       } else {
         let weather = await axios.get(
-          `${process.env.VUE_APP_API_BASE_URL}/location/44418`,
+          `https://cors-anywhere.herokuapp.com/${process.env.VUE_APP_API_BASE_URL}/location/44418`,
           auth
         )
 
